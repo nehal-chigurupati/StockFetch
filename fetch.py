@@ -9,10 +9,13 @@ def get52WeekPriceHistory(ticker):
     return priceHistory
 
 def get52WeekPriceChange(ticker):
-    data = get52WeekPriceHistory(ticker)
-    oldPrice = data.head(1).iat[0, 0]
-    newPrice = data.tail(1).iat[0, 0]
+    try:
+        data = get52WeekPriceHistory(ticker)
+        oldPrice = data.head(1).iat[0, 0]
+        newPrice = data.tail(1).iat[0, 0]
 
-    changeInPrice = (newPrice - oldPrice) / (oldPrice)
+        changeInPrice = (newPrice - oldPrice) / (oldPrice)
 
-    return changeInPrice
+        return changeInPrice
+    except:
+        return 'NULL'
